@@ -10,7 +10,7 @@
  * - Tractament d'un POST amb  ExpressJS
  * - Instal·lar body-parser per tractar JSON, URLencoder i dades
  * - npm install body-parser, https://www.npmjs.com/package/body-parser
- *
+ * 19.01.2026, actualització a Express 5.0.0
  * NOTES
  * ORIGEN
  * Desenvolupament Aplicacions Web. Jesuïtes El Clot

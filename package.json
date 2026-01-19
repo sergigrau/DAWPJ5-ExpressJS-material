@@ -1,6 +1,6 @@
 {
   "name": "material",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "workshop of express",
   "main": "app.js",
   "scripts": {
@@ -9,20 +9,8 @@
   "author": "sergi.grau@fje.edu",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "multer": "^1.3.0"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sergigrau/DAWM06UF4-3-Express-material.git"
-  },
-  "keywords": [
-    "express"
-  ],
-  "bugs": {
-    "url": "https://github.com/sergigrau/DAWM06UF4-3-Express-material/issues"
-  },
-  "homepage": "https://github.com/sergigrau/DAWM06UF4-3-Express-material#readme"
+    "body-parser": "*",
+    "express": "*",
+    "multer": "*"
+  }
 }

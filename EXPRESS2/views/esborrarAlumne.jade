@@ -1,9 +1,0 @@
-extends layout
-
-block content
-    h1= titol
-    label la clau primaria és el email
-    form#formAddUser(name="esborrarAlumne",method="post",action="/esborrarAlumneBD")        
-        input#inputUserEmail(type="text", placeholder="email", name="email")
-        button#btnSubmit(type="submit") submit
-        

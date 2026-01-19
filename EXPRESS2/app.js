@@ -1,22 +1,32 @@
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+/**
+ * Exercici amb middleware i rutes en Express complet
+ * ORIGEN
+ * Desenvolupament Aplicacions Web. Jesuïtes El Clot
+ * date 19.01.2026
+ * format del document UTF-8
+ * CHANGELOG
+ * 19.01.2026
+ * - Actualització a Express 5.0.0
+ */
 
-var routes = require('./routes');
+const express = require('express');
+const http = require('http');
+const path = require('path');
+const favicon = require('static-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+
+const routes = require('./routes');
 
 // connexio BDs
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('mongodb://127.0.0.1:27017/alumnes');
+const mongo = require('mongodb');
+const monk = require('monk');
+const db = monk('mongodb://127.0.0.1:27017/alumnes');
 
-var app = express();
+const app = express();
 
 
-// view engine setup
+// configuració del motor de vistes
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -40,19 +50,19 @@ app.post('/afegirAlumneBD', routes.afegirAlumneBD(db));
 app.post('/modificarAlumneBD', routes.modificarAlumneBD(db));
 app.post('/esborrarAlumneBD', routes.esborrarAlumneBD(db));
 
-/// catch 404 and forwarding to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+/// capturar 404 i reenviar al gestor d'errors
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
-/// error handlers
+/// gestors d'errors
 
-// development error handler
-// will print stacktrace
+// gestor d'errors en desenvolupament
+// mostrarà la traça de l'stack
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use((err, req, res, next) => {
         res.render('error', {
             message: err.message,
             error: err
@@ -60,9 +70,9 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+// gestor d'errors en producció
+// no es mostren traces d'stack a l'usuari
+app.use((err, req, res, next) => {
     res.render('error', {
         message: err.message,
         error: {}

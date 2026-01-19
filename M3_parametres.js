@@ -8,8 +8,8 @@
  * CHANGELOG
  * 14.01.2016
  * - Utilització de paràmetres
- *
- * NOTES
+ * 19.01.2026, actualització a Express 5.0.0
+* NOTES
  * ORIGEN
  * Desenvolupament Aplicacions Web. Jesuïtes El Clot
  */

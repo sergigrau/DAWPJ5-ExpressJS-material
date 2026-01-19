@@ -1,38 +1,51 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+/**
+ * Exercici amb middleware i rutes en Express
+ * ORIGEN
+ * Desenvolupament Aplicacions Web. Jesuïtes El Clot
+ * date 19.01.2026
+ * format del document UTF-8
+ * CHANGELOG
+ * 19.01.2026
+ * - Actualització a Express 5.0.0
+ */
 
-var indexController = require('./controllers/index');
-var usuarisController = require('./controllers/usuaris');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+// const favicon = require('serve-favicon'); // descomenta si afegeixes public/favicon.ico
 
-var app = express();
+const indexController = require('./controllers/index');
+const usuarisController = require('./controllers/usuaris');
+
+const app = express();
 
 app.set('views', path.join(__dirname, 'vistes'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// Disable the X-Powered-By header per seguretat
+app.disable('x-powered-by');
+
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico'))); // activar si tens favicon
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexController);
 app.use('/usuaris', usuarisController);
 
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+  app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -41,9 +54,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,

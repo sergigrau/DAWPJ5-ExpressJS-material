@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    titol= titol
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    block contingut
+      h1= message
+      if error && error.status
+        h2= error.status
+      pre= error.stack

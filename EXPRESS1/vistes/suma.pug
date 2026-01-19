@@ -1,0 +1,14 @@
+extends layout
+
+block contingut
+  h1= titol
+  if error
+    p(style='color: red')= error
+  form(name="input", action="/calcularSuma", method="get")
+    | nombre1:
+    input(type="text", name="n1", value=(typeof n1 !== 'undefined' ? n1 : ''))
+    | nombre2:
+    input(type="text", name="n2", value=(typeof n2 !== 'undefined' ? n2 : ''))
+    input(type="submit", value="Submit")
+  if typeof resultat !== 'undefined'
+    p Resultat: #{resultat}

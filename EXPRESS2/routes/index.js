@@ -13,7 +13,7 @@ exports.salutacio = function(req, res){
 
 exports.llistarAlumnes = function(db) {
     return function(req, res) {
-        var collection = db.get('usercollection');
+        var collection = db.get('alumnes');
         collection.find({},{},function(e,docs){
         	console.log(docs);
             res.render('llistarAlumnes', {
@@ -37,7 +37,7 @@ exports.afegirAlumneBD = function(db) {
         var email = req.body.email;
 
         // obtenim la nostra col·lecció de dades
-        var collection = db.get('usercollection');
+        var collection = db.get('alumnes');
 
         // desen a la BD
         collection.insert({
@@ -72,7 +72,7 @@ exports.modificarAlumneBD = function(db) {
         var email = req.body.email;
 
         // obtenim la nostra col·lecció de dades
-        var collection = db.get('usercollection');
+        var collection = db.get('alumnes');
 
         // desen a la BD
         collection.update({ "email" : email},{$set:{
@@ -106,7 +106,7 @@ exports.esborrarAlumneBD = function(db) {
         var email = req.body.email;
 
         // obtenim la nostra col·lecció de dades
-        var collection = db.get('usercollection');
+        var collection = db.get('alumnes');
 
         // desen a la BD
         collection.remove({ "email" : email}, function (err, doc) {
